@@ -22,6 +22,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.wordpress.carledwinj.spring.mockito.rest.exception.UnknownResourceException;
 import com.wordpress.carledwinj.spring.mockito.rest.model.User;
 import com.wordpress.carledwinj.spring.mockito.rest.resources.UserRestController;
 import com.wordpress.carledwinj.spring.mockito.rest.service.impl.UserServiceImpl;
@@ -102,6 +103,11 @@ public class UserRestControllerTest {
 		.andExpect(status().isOk())
 		.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
 		.andExpect(jsonPath("success", is(true)));
+	}
+	
+	@Test
+	public void testUnknownResource() throws Exception {
+		mockMvc.perform(get("/**"));
 	}
 	
 }
