@@ -30,34 +30,37 @@ public class UserRestController {
 	@RequestMapping(method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
 	public RestResponse<String> post(@RequestBody User user) {
 		
-		if(service.save(user)) {
+		boolean success = service.save(user);
+		if(success) {
 			
-			return new RestResponse<String>(true, "Message Success post User...", HttpStatus.CREATED, null);
+			return new RestResponse<String>(success, "Message Success post User...", HttpStatus.CREATED, null);
 		}
 			
-		return new RestResponse<String>(false, "Message Error post User...", HttpStatus.BAD_REQUEST, null);
+		return new RestResponse<String>(success, "Message Error post User...", HttpStatus.BAD_REQUEST, null);
 	}
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.DELETE , produces = MediaType.APPLICATION_JSON_VALUE)
 	public RestResponse<String> delete(@PathVariable("id") Long id){
 		
-		if(service.delete(id)) {
+		boolean success = service.delete(id);
+		if(success) {
 			
-			return new RestResponse<String>(true, "Message Success delete User...", HttpStatus.NO_CONTENT, null);
+			return new RestResponse<String>(success, "Message Success delete User...", HttpStatus.NO_CONTENT, null);
 		}
 		
-		return new RestResponse<String>(false, "Message Error delete User...", HttpStatus.BAD_REQUEST, null);
+		return new RestResponse<String>(success, "Message Error delete User...", HttpStatus.BAD_REQUEST, null);
 	}
 	
 	@RequestMapping(method=RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
 	public RestResponse<String> put(@RequestBody User user){
 		
-		if(service.update(user)) {
+		boolean success = service.update(user);
+		if(success) {
 			
-			return new RestResponse<String>(false, "Message Success put User...", HttpStatus.BAD_REQUEST, null);
+			return new RestResponse<String>(success, "Message Success put User...", HttpStatus.BAD_REQUEST, null);
 		}
 		
-		return new RestResponse<String>(false, "Message Error put User...", HttpStatus.BAD_REQUEST, null);
+		return new RestResponse<String>(success, "Message Error put User...", HttpStatus.BAD_REQUEST, null);
 	}
 	
 	

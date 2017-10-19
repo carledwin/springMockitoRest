@@ -12,17 +12,17 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public boolean save(User user) {
-		return false;
+		return true;
 	}
 
 	@Override
 	public boolean delete(Long id) {
-		return false;
+		return true;
 	}
 
 	@Override
 	public boolean update(User user) {
-		return false;
+		return true;
 	}
 
 	
